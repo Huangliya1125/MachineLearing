@@ -1,0 +1,11 @@
+import trees
+import treePlotter
+
+fh = open('lenses.txt')
+lenses_dataset = [line.strip().split('\t') for line in fh.readlines()]
+lenses_labels = ['age','prescript','astigmatic','tearRate']
+lenses_trees = trees.create_Trees(lenses_dataset, lenses_labels)
+trees.store_trees(lenses_trees, 'classifier_trees_for_lenses.txt')
+trees_for_lenses = trees.load_trees('classifier_trees_for_lenses.txt')
+print trees_for_lenses
+treePlotter.createPlot(trees_for_lenses)
